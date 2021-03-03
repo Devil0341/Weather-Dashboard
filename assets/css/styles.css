@@ -11,6 +11,8 @@ font-family: 'Merriweather', serif, sans-serif;
 background-color: var(--lightgray);
 color: var(--softwhite);
 }
+
+
 .jumbotron {
     background-color: var(--darkgray);
 
@@ -18,18 +20,27 @@ color: var(--softwhite);
 
 .btn {
     background-color: var(--blue);
-    border: 2px solid greenyellow;
-}
-}
+    /* /* border: 2px solid greenyellow; */
+} 
+
+li {
+    border: solid var(--darkgray);
+} 
 
 .form-label {
     color: var(--darkgray);
-}
+   }
+   #main-card,
+   #weekly-header {
+    color: var(--darkgray);
+   }
+   
 
-#search-wrapper{
-    border: 2px solid blue;
-}
+
+  /* #search-wrapper{
+     border: 2px solid blue; 
+} 
+
 i{
-    border: 2px solid blue;
-}
-}
+    border: 2px solid blue; 
+}  */
