@@ -1,47 +1,97 @@
-//search button
-var searchButtonEl= $('.btn')
-var searchInputEl = $('#city-list')
 
-searchButtonEl.on('click', function(event){
-  event.preventDefault()
-  // grabbing the city
-  var inputCity = $('#form1').val();
+var mainCardEl = document.getElementById('main-card-body')
+var searchButton = document.getElementById('search-button')
+var weatherData;
+var cityName = document.getElementById('form-control')
+var city = '';
+var cities = []
+var cityHistoryBox = document.getElementById('search-history-box')
+apiKey ='';
+init()
+historyClicked()
 
 
-  //if nothing entered and button is clicked
-if (!inputCity){
-  console.log('No City filled out');
-  return;
+// Get local storage of user inputs of cities and fill array
+function init() {
+  var savedCities = JSON.parse(localStorage.getItem('cities'));
+
+  if (savedCities !== null) {
+    cities = savedCities
+  }
+  displayCityHistory();
 }
 
- var cityHistoryEl = $('<li class="list-group-item list-group-item-dark col-12 m-1">')
 
 
-// $('<li class="flex-row justify-space-between align-center p-2 bg-light text-dark">');
+// Save to local storage the user input of array of strings as a JSON stringify
+function cityStorage() {
+  localStorage.setItem('cities', JSON.stringify(cities));
 
-cityHistoryEl.text(inputCity);
-
-//Print to page lecture 5-6
-searchInputEl.append(cityHistoryEl)
+}
 
 
+//Show buttons of each element in the cities array as a search history on left side of page
+function displayCityHistory() {
+  cityHistoryBox.innerHTML = '';
+
+  if (cities == null) {
+    return;
+  }
+  //using `set` of unique strings in order it was entered to turn into an array and loop over
+  var userInputCity = [...new Set(cities)];
+  for (var i = 0; i < userInputCity.length; i++) {
+    var cityNamesHistory = userInputCity[i];
+
+    var cityHistoryButtonEl = document.createElement('button');
+    cityHistoryButtonEl.textContent = cityNamesHistory;
+    cityNamesHistory.setAttribute('class', 'history-list-buttons');
+
+    cityHistoryBox.appendChild(cityHistoryButtonEl);
+
+    historyClicked()
+  }
+}
+
+//The on click function for the city search history using jquery
+function historyClicked() {
+  $('.history-list-buttons').on('click', function (event) {
+    event.preventDefault();
+    city = $(this).text().trim();
+    // console.log('maybe this works now')
+    weatherApiCalls();
+  });
+}
+
+//The on click for the primary search bar using jquery here as well 
+function searchButtonClicked(){
+$('#searchbtn').on('click', function (event){
+  event.preventDefault();
+  city =$(this)
 })
+}
+
+// function calling api twice with fetch on for current weather and one for 5 day forecast
+// function weatherApicalls() {
+//   // console.log('testing', weather);
+//   var cityInput = cityName.value()
+//   var apiKey = '{2a5a9e3f8873ca8b4f13d2b884564b89}';
+//   var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + { cityInput } + '&appid=' + apiKey;
 
 
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       // console.log(data)--may need for loop here
+//       for (var i = 0; i < data.length; i++) {
+//         weatherData = data[i].html_url
 
-// api from weather website
-// api.openweathermap.org/data/2.5/forecast?id={city ID}&appid={API key}
+//         var mainCardWeather = document.createElement('div')
+//         mainCardWeather.textContent = data[i].html_url;         // mainCardEl.appendChild(mainCardWeather)
+//       }
+//     });
+// }
+// weather('Las Vegas')
 
-// //fetch data 
-// // Replace ./data.json with your JSON feed
-// fetch('./data.json')
-//   .then((response) => {
-//     return response.json()
-//   })
-//   .then((data) => {
-//     // Work with JSON data here
-//     console.log(data)
-//   })
-//   .catch((err) => {
-//     // Do something for an error here
-//   })
+// searchButton.addEventListener('click', weather)
