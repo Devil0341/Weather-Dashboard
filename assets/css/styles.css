@@ -35,7 +35,9 @@ li {
     color: var(--darkgray);
    }
    
-
+#today-weather-icon{
+    
+}
 
   /* #search-wrapper{
      border: 2px solid blue; 

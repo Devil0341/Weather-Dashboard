@@ -56,7 +56,7 @@ function historyClicked() {
     event.preventDefault();
     city = $(this).text().trim();
     // console.log('maybe this works now')
-    weatherApiCalls();
+    weatherApiCalls(city);
   });
 }
 
@@ -74,7 +74,7 @@ $('#search-button').on('click', function (event) {
     cities.shift()
   }
   // if the form is blank return from the function early
-  if (city = ''){
+  if (city == ''){
     return;
   }
 
@@ -99,10 +99,12 @@ function weatherApiCalls(cityInput) {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data)
+      console.log(data)
       
       var dataName = data.name;
-      var dataDate= data.dt;
+      var dataDate= data.dt*1000;
+      var convertDate = new Date(dataDate);
+      var humanDateFormat = convertDate.toLocaleString('en-US',{timeZoneName:'short'})
       var dataIcon = data.weather[0].icon;
       var dataTemp = data.main.temp;
       var dataHum = data.main.humidity;
@@ -112,7 +114,7 @@ function weatherApiCalls(cityInput) {
       
       
       $('#city').text(dataName);
-      $('#today-date').text(dataDate)
+      $('#today-date').text(humanDateFormat)
       
       $('#today-weather-icon').attr({"src": "http://openweathermap.org/img/w/" + dataIcon + '.png', 'height':'100px','width':'100px'});
   
