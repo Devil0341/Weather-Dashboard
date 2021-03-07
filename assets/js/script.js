@@ -1,12 +1,10 @@
 
-var mainCardEl = document.getElementById('main-card-body')
-var searchButton = document.getElementById('search-button')
 var weatherData;
 var cityName = document.getElementById('form-control')
 var city = '';
 var cities = []
 var cityHistoryBox = document.getElementById('search-history-box')
-apiKey ='';
+var apiKey = '';
 init()
 historyClicked()
 
@@ -44,11 +42,11 @@ function displayCityHistory() {
 
     var cityHistoryButtonEl = document.createElement('button');
     cityHistoryButtonEl.textContent = cityNamesHistory;
-    cityNamesHistory.setAttribute('class', 'history-list-buttons');
+    cityHistoryButtonEl.setAttribute('class', 'history-list-buttons');
 
     cityHistoryBox.appendChild(cityHistoryButtonEl);
 
-    historyClicked()
+    historyClicked();
   }
 }
 
@@ -63,35 +61,65 @@ function historyClicked() {
 }
 
 //The on click for the primary search bar using jquery here as well 
-function searchButtonClicked(){
-$('#searchbtn').on('click', function (event){
+$('#search-button').on('click', function (event) {
   event.preventDefault();
-  city =$(this)
-})
+
+  city = $(this).prev().val().trim()
+
+  //Push the city the user entered into search bar into the cities array
+  cities.push(city);
+
+  //make sure cities array.length is never more than 8
+  if ( cities.length > 8){
+    cities.shift()
+  }
+  // if the form is blank return from the function early
+  if (city = ''){
+    return;
+  }
+
+  weatherApiCalls(city);
+  displayCityHistory();
+  cityStorage();
+ 
+});
+
+
+
+// function calling api twice with fetch on for current weather and one for 5 day forecast use jquery to display 
+function weatherApiCalls(cityInput) {
+  // console.log('testing', weather);
+  // var cityInput = cityName.value()
+   apiKey = '2a5a9e3f8873ca8b4f13d2b884564b89';
+  var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInput + '&units=imperial&appid=' + apiKey;
+
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data)
+      
+      var dataName = data.name;
+      var dataDate= data.dt;
+      var dataIcon = data.weather[0].icon;
+      var dataTemp = data.main.temp;
+      var dataHum = data.main.humidity;
+      var dataWind = data.wind.speed;
+      
+      
+      
+      
+      $('#city').text(dataName);
+      $('#today-date').text(dataDate)
+      
+      $('#today-weather-icon').attr({"src": "http://openweathermap.org/img/w/" + dataIcon + '.png', 'height':'100px','width':'100px'});
+  
+      $('#temp').text('Temperature: ' + dataTemp + String.fromCharCode(176) + 'F');
+      $('#humidity').text('Humidity: ' + dataHum + String.fromCharCode(37));
+      $('#wind-speed').text('Wind Speed: ' + dataWind +' MPH');
+   
+   
+    });
 }
-
-// function calling api twice with fetch on for current weather and one for 5 day forecast
-// function weatherApicalls() {
-//   // console.log('testing', weather);
-//   var cityInput = cityName.value()
-//   var apiKey = '{2a5a9e3f8873ca8b4f13d2b884564b89}';
-//   var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + { cityInput } + '&appid=' + apiKey;
-
-
-//   fetch(requestUrl)
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       // console.log(data)--may need for loop here
-//       for (var i = 0; i < data.length; i++) {
-//         weatherData = data[i].html_url
-
-//         var mainCardWeather = document.createElement('div')
-//         mainCardWeather.textContent = data[i].html_url;         // mainCardEl.appendChild(mainCardWeather)
-//       }
-//     });
-// }
-// weather('Las Vegas')
-
-// searchButton.addEventListener('click', weather)
