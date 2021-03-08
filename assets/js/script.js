@@ -43,6 +43,7 @@ function displayCityHistory() {
     var cityHistoryButtonEl = document.createElement('button');
     cityHistoryButtonEl.textContent = cityNamesHistory;
     cityHistoryButtonEl.setAttribute('class', 'history-list-buttons');
+     cityHistoryButtonEl.style.margin ='10px';
 
     cityHistoryBox.appendChild(cityHistoryButtonEl);
 
@@ -86,7 +87,7 @@ $('#search-button').on('click', function (event) {
 
 
 
-// function calling api twice with fetch on for current weather and one for 5 day forecast use jquery to display 
+// function calling api twice with fetch for current weather and a 5 day forecast use jquery to display to the html
 function weatherApiCalls(cityInput) {
   // console.log('testing', weather);
   // var cityInput = cityName.value()
@@ -99,7 +100,7 @@ function weatherApiCalls(cityInput) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
+      // console.log(data)
 
       var dataName = data.name;
       var dataDate = data.dt * 1000;
@@ -148,10 +149,10 @@ function weatherApiCalls(cityInput) {
               $("#" + numberOfDays + "humidity").text('Humidity: ' + response.list[i].main.humidity + String.fromCharCode(37));
               $("#" + numberOfDays + "weather-forecast-icon").attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");
 
-              console.log(response.list[i].dt_txt.split("-"));
-              console.log(numberOfDays);
-              console.log(response.list[i].main.temp);
-              console.log(response.list[i].main.humidity);
+              // console.log(response.list[i].dt_txt.split("-"));
+              // console.log(numberOfDays);
+              // console.log(response.list[i].main.temp);
+              // console.log(response.list[i].main.humidity);
               numberOfDays++;
             }
 

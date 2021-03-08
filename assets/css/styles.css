@@ -34,9 +34,13 @@ li {
    #weekly-header {
     color: var(--darkgray);
    }
+
+   #search-history-title{
+       color: var(--darkgray)
+   }
    
-#today-weather-icon{
-    
+section {
+    background-color: var(--darkgray);
 }
 
   /* #search-wrapper{

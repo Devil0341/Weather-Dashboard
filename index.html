@@ -28,7 +28,7 @@
     <!-- search field -->
     <div class='container d-flex m-0'>
         <!-- column1 wrapper for left side of page -->
-        <div class='col-5' id='column-left-side'>
+        <div class='col-4' id='column-left-side'>
             <div class='row d-flex' id=search-wrapper>
                 <div class='input-group mx-5'>
                     <div class="form-outline">
@@ -42,12 +42,13 @@
 
 
                     <!-- Search history  -->
-                    <h4>Search History:</h4>
-                    <div class='container my-3 col-12' id='search-history-box'>
-                    </div>
+                    <h4 id = 'search-history-title'>Search History:</h4>
+                    <section class = col-9>
+                    <div class='container col-9 m-3 p-2' id='search-history-box'></div>
+                    </section>
 
                     <!-- dynamically generated  html for city search history-->
-                    <ul class='list-group' id="city-list"></ul>
+                    <!-- <ul class='list-group' id="city-list"></ul> -->
                 </div>
             </div>
         </div>
