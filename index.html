@@ -40,7 +40,7 @@
                         </button>
                     </div>
 
-                   
+
                     <!-- Search history  -->
                     <h4>Search History:</h4>
                     <div class='container my-3 col-12' id='search-history-box'>
@@ -62,11 +62,11 @@
                     <div class='card-body' id='main-card-body'>
                         <div id='weather'>
                             <h3 id='city'>
-                                <h3 id = today-date></h3>
-                                <img id ='today-weather-icon'></img>
+                                <h3 id=today-date></h3>
+                                <img id='today-weather-icon'></img>
                             </h3>
                             <div id='temp'></div>
-                            <div id='humidity'></div>
+                            <div id='hum'></div>
                             <div id='wind-speed'></div>
                             <div id='uv'></div>
                         </div>
@@ -79,69 +79,54 @@
             <div class='row d-flex justify-content-around' id='5day-forecast-wrapper'>
 
                 <!-- day1 -->
-                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;" id='card-bg'>
-                    <div class="card-header" id=date data-date='date'>Date1</div>
-                    <div class="card-body">
-                        <div id='weather'>
-                            <div id='date'></div>
-                            <img id ='5-day-weather-icon'></img>
-                            <div class="card-temp" id = day-one-temp>Temp</div>
-                            <div class="card-hum">Humidity</div>
-                        </div>
-                    </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;" id='0day'>
+                    <div class="card-header" id='0date'></div>
+                    <img id='0weather-forecast-icon'></img>
+                    <div id='0temperature'></div>
+                    <div id='0humidity'></div>
                 </div>
+
 
 
                 <!-- day2 -->
-                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;">
-                    <div class="card-header" id=date2 data-date='date'>Date2</div>
-                    <div class="card-body">
-                        <div id='weather'>
-                            <div id='date'></div>
-                            <img id ='5-day-weather-icon'></img>
-                            <div class="card-temp">Temp</div>
-                            <div class="card-hum">Humidity</div>
-                        </div>
-                    </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;" id='1day'>
+                    <div class="card-header" id='1date'></div>
+                    <img id='1weather-forecast-icon'></img>
+                    <div id='1temperature'></div>
+                    <div id='1humidity'></div>
                 </div>
+
+
 
 
                 <!-- day3 -->
-                <div class="card text-white bg-primary mb-3 " style="max-width: 10rem;">
-                    <div class="card-header" id=date3 data-date='date'>Date3</div>
-                    <div class="card-body">
-                        <div id='weather'>
-                            <div id='date'></div>
-                            <img id ='5-day-weather-icon'></img>
-                            <div class="card-temp">Temp</div>
-                            <div class="card-hum">Humidity</div>
-                        </div>
-                    </div>
+                <div class="card text-white bg-primary mb-3 " style="max-width: 10rem;" id='2day'>
+                    <div class="card-header" id=2date></div>
+                    <img id='2weather-forecast-icon'></img>
+                    <div id='2temperature'></div>
+                    <div id='2humidity'></div>
                 </div>
+
+
 
                 <!-- day4 -->
-                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;">
-                    <div class="card-header" id=date4 data-date='date'>Date4</div>
-                    <div class="card-body">
-                        <div id='weather'>
-                            <div id='date'></div>
-                            <img id ='5-day-weather-icon'></img>
-                            <div class="card-temp">Temp</div>
-                            <div class="card-hum">Humidity</div>
-                        </div>
-                    </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;" id='3day'>
+                    <div class="card-header" id=3date></div>
+                    <img id='3weather-forecast-icon'></img>
+                    <div id='3temperature'></div>
+                    <div id='3humidity'></div>
                 </div>
 
+
+
                 <!-- day5 -->
-                <div class="card text-white bg-primary mb-3" style="max-width: 6rem;">
-                    <div class="card-header" id=date5 data-date='date'>Date5</div>
-                    <div id='weather'>
-                        <div id='date'></div>
-                        <img id ='5-day-weather-icon'></img>
-                        <div class="card-temp">Temp</div>
-                        <div class="card-hum">Humidity</div>
-                    </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 10rem;" id='4day'>
+                    <div class="card-header" id=4date></div>
+                    <img id='4weather-forecast-icon'></img>
+                    <div id='4temperature'></div>
+                    <div id='4humidity'></div>
                 </div>
+
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

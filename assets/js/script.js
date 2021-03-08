@@ -119,35 +119,41 @@ function weatherApiCalls(cityInput) {
       $('#today-weather-icon').attr({ "src": "http://openweathermap.org/img/w/" + dataIcon + '.png', 'height': '100px', 'width': '100px' });
 
       $('#temp').text('Temperature: ' + dataTemp + String.fromCharCode(176) + 'F');
-      $('#humidity').text('Humidity: ' + dataHum + String.fromCharCode(37));
+      $('#hum').text('Humidity: ' + dataHum + String.fromCharCode(37));
       $('#wind-speed').text('Wind Speed: ' + dataWind + ' MPH');
 
       //second API call for 5 day forecast
       var secondRequestUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityInput + '&units=imperial&appid=' + apiKey;
+      //  return pulled out not sure if needed//
       return fetch(secondRequestUrl)
         .then(function (response) {
           return response.json();
         })
-        .then(function (data) {
-          // console.log(data)
+        .then(function (response) {
+          // console.log(response)
           var numberOfDays = 0;
 
           //iterate over the 40 weather data sets = 5 days x 8 hours per day
-          for (var i = 0; i < data.list.length; i++) {
+          for (var i = 0; i < response.list.length; i++) {
 
             //split function to isolate the time-data
-            if (data.list[i].dt_txt.split(' ')[1] == '15:00:00') {
+            if (response.list[i].dt_txt.split(' ')[1] == '15:00:00') {
               //When its 3pm update these fields
-              var day = data.list[i].dt_txt.split('-')[2].split(' ')[0];
-              var month = data.list[i].dt_txt.split('-')[1];
-              var year = data.list[i].dt_txt.split('-')[0];
-              $('#date').text(month + '/' + day + '/' + year)
-              var data5DayTemp = data.list[i].main.temp;
-              $('.card-temp').text('Temperature: ' + data5DayTemp + String.fromCharCode(176) + 'F')
-              $('.card-hum').text('Humidity: ' + data.list[i].main.humidity + String.fromCharCode(37))
-              $('#5-day-weather-icon').attr("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
+              var day = response.list[i].dt_txt.split('-')[2].split(' ')[0];
+              var month = response.list[i].dt_txt.split('-')[1];
+              var year = response.list[i].dt_txt.split('-')[0];
+              $("#" + numberOfDays + "date").text(month + '/' + day + '/' + year);
+              var data5DayTemp = response.list[i].main.temp;
+              $("#" + numberOfDays + "temperature").text('Temperature: ' + data5DayTemp + String.fromCharCode(176) + 'F');
+              $("#" + numberOfDays + "humidity").text('Humidity: ' + response.list[i].main.humidity + String.fromCharCode(37));
+              $("#" + numberOfDays + "weather-forecast-icon").attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");
+
+              console.log(response.list[i].dt_txt.split("-"));
+              console.log(numberOfDays);
+              console.log(response.list[i].main.temp);
+              console.log(response.list[i].main.humidity);
+              numberOfDays++;
             }
-            numberOfDays++;
 
           }
         })
