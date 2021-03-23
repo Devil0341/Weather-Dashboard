@@ -1,7 +1,7 @@
 # Weather-Dashboard
 # 06 Server-Side APIs: Weather Dashboard
 
-[Deployed Link](https://devil0341.github.io/Weather-Dashboard/)
+[Deployed Link](https://gregpetropoulos.github.io/Weather-Dashboard/)
 
 ## User Story
 
